@@ -1,0 +1,30 @@
+{
+  "schema": "rrglab.local-pr-verification.v1",
+  "source_repository": "private JustYou checkout (not uploaded)",
+  "source_pr": 126,
+  "target_sha": "fe83928b261a53ba539d16cd64536a72d580c61c",
+  "test_profile": "justyou-inbound-v1",
+  "result": "PASS",
+  "exit_code": 0,
+  "test_count_expected": 17,
+  "source_uploaded": false,
+  "output_redacted": true,
+  "negative_test": {
+    "wrong_sha": "BLOCKED",
+    "exit_code": 1
+  },
+  "lab_checks": {
+    "unittest": "9 passed",
+    "ruff": "passed",
+    "public_scope": "passed",
+    "python_compile": "passed",
+    "bandit": "NOT_RUN",
+    "detect_secrets": "NOT_RUN"
+  },
+  "limits": [
+    "Target suite is narrow, not full production verification",
+    "The public fixture is independent of the private implementation",
+    "Private source stays on the local worker",
+    "No authenticated production adapter or durable inbox verified"
+  ]
+}
