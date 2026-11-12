@@ -1,5 +1,5 @@
 {
-  "schema": "rrglab.local-pr-verification.v1",
+  "schema": "rrglab.local-pr-verification.v2",
   "source_repository": "private JustYou checkout (not uploaded)",
   "source_pr": 126,
   "target_sha": "fe83928b261a53ba539d16cd64536a72d580c61c",
@@ -25,6 +25,9 @@
     "Target suite is narrow, not full production verification",
     "The public fixture is independent of the private implementation",
     "Private source stays on the local worker",
-    "No authenticated production adapter or durable inbox verified"
-  ]
+    "No authenticated production adapter or durable inbox verified",
+    "Worker HOME is retained for preinstalled test dependencies; source isolation is filesystem worktree, not a security sandbox"
+  ],
+  "temporary_worktree_removed": true,
+  "execution_model": "temporary local Git worktree at pinned SHA; automatic removal after test"
 }
