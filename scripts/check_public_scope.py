@@ -1,8 +1,8 @@
 """Fail closed on obvious private or sensitive files in a public PR fixture."""
-from pathlib import Path
 import re
 import subprocess
 import sys
+from pathlib import Path
 
 BLOCKED_SUFFIXES = {".pem", ".key", ".p12", ".pfx", ".sqlite", ".db"}
 BLOCKED_NAMES = {".env", "id_rsa", "id_ed25519", "credentials.json", "secrets.json"}

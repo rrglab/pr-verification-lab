@@ -42,7 +42,7 @@ fi
 if command -v detect-secrets >/dev/null 2>&1; then
   temp_report="$(mktemp)"
   trap 'rm -f "$temp_report"' EXIT
-  detect-secrets scan --all-files > "$temp_report"
+  detect-secrets scan --all-files --exclude-files "(^|/)\.ruff_cache/|(^|/)__pycache__/" > "$temp_report"
   python -c 'import json,sys; d=json.load(open(sys.argv[1])); assert not d["results"], "Possible secrets detected"' "$temp_report"
 else
   echo "SKIPPED: detect-secrets is not installed"
