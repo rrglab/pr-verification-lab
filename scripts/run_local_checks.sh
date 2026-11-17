@@ -2,12 +2,20 @@
 # Local-only, evidence-producing Quality Factory verification.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN=python3
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN=python
+else
+  echo "FAIL: Python 3 is required" >&2
+  exit 127
+fi
 echo "== Public scope =="
-python scripts/check_public_scope.py
+"$PYTHON_BIN" scripts/check_public_scope.py
 echo "== Python compile =="
-python -m compileall -q scripts tests
+"$PYTHON_BIN" -m compileall -q scripts tests
 echo "== Unit tests =="
-python -m unittest discover -s tests -v
+"$PYTHON_BIN" -m unittest discover -s tests -v
 run_optional() {
   local name="$1"; shift
   if command -v "$name" >/dev/null 2>&1; then
@@ -43,7 +51,7 @@ if command -v detect-secrets >/dev/null 2>&1; then
   temp_report="$(mktemp)"
   trap 'rm -f "$temp_report"' EXIT
   detect-secrets scan --all-files --exclude-files "(^|/)\.ruff_cache/|(^|/)__pycache__/" > "$temp_report"
-  python -c 'import json,sys; d=json.load(open(sys.argv[1])); assert not d["results"], "Possible secrets detected"' "$temp_report"
+  "$PYTHON_BIN" -c 'import json,sys; d=json.load(open(sys.argv[1])); assert not d["results"], "Possible secrets detected"' "$temp_report"
 else
   echo "SKIPPED: detect-secrets is not installed"
 fi
