@@ -9,7 +9,7 @@ Run locally: `bash scripts/run_local_checks.sh`.
 Required: Python unit tests, compileall, and public-scope policy.
 Optional when installed: Ruff, Bandit, yamllint, ShellCheck, pip-audit, npm audit/lint/types/tests, detect-secrets, Zizmor. The runner reports skipped tools; skipped checks do not count as green evidence.
 
-CodeRabbit can review public PRs independently of GitHub Actions. Dependabot configuration remains for dependency update proposals. CodeQL and other scanners may be used through their local CLIs where available, but have no active Actions workflows in this repository.
+CodeRabbit can review public PRs independently of GitHub Actions. Dependabot is not configured: the repository contains no dependency manifests or Actions workflows for it to update (see docs: "The repository must also contain a dependency manifest or lock file for each package manager"). CodeQL and other scanners may be used through their local CLIs where available, but have no active Actions workflows in this repository.
 
 ## Procedure
 
